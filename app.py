@@ -16,9 +16,10 @@ def page_index():
 def page_candidate(x):
     candidate_data = utils.get_by_pk(candidates_list, x)
     url = candidate_data[0]
+    data = candidate_data[1]
     print(url)
     return f"<img src='{url}'>" \
-           f"<pre>{candidate_data[1]}</pre>"
+           f"<pre>{data}</pre>"
 
 
 @app.route("/skills/<x>")

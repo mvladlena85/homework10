@@ -35,10 +35,3 @@ def get_by_skill(candidates: list, skill_name: str):  # , которая вер�
     return candidate_data
 
 
-candidate_list = load_candidates("candidates.json")
-# print(get_all(candidate_list))
-# print(get_by_pk(candidate_list, 1))
-cand = get_by_pk(candidate_list, 4)
-print(cand[0])
-print(cand[1])
-# print(get_by_skill(candidate_list, "django"))
