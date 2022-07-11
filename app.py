@@ -28,4 +28,5 @@ def page_skilled_candidates(x):
     return utils.format_data(candidates)
 
 
+# Запуск сервера
 app.run()
