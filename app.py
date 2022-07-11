@@ -3,28 +3,29 @@ import utils
 
 app = Flask(__name__)
 
-path = "candidates.json"
-candidates_list = utils.load_candidates(path)
-
 
 @app.route("/")
 def page_index():
-    return f"<pre>{utils.get_all(candidates_list)}</pre>"
+    """Главная страница. Отображается список всех кандидатов и их навыки."""
+    data = utils.get_all()
+    return utils.format_data(data)
 
 
 @app.route("/candidates/<int:x>/")
 def page_candidate(x):
-    candidate_data = utils.get_by_pk(candidates_list, x)
-    url = candidate_data[0]
-    data = candidate_data[1]
-    print(url)
-    return f"<img src='{url}'>" \
-           f"<pre>{data}</pre>"
+    """Страница отображения кандидата по его Id"""
+    candidate_data = utils.get_by_pk(x)
+    url = candidate_data['picture']
+    data = utils.format_data([candidate_data])
+    return f'''<img src='{url}'>'
+                {data}'''
 
 
 @app.route("/skills/<x>")
 def page_skilled_candidates(x):
-    return f"<pre>{utils.get_by_skill(candidates_list, x)}</pre>"
+    """Страница поиска кандидата по навыку"""
+    candidates = utils.get_by_skill(x)
+    return utils.format_data(candidates)
 
 
 app.run()
